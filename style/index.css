@@ -1,0 +1,95 @@
+  .container {
+  margin-top: 1rem;
+  width: 1170px;
+  display: flex;
+}
+
+.cards {
+  flex-wrap: wrap;
+  align-content: flex-start;
+  display: flex;
+  border: 2px;
+  color: rgb(46, 139, 87);
+  font: italic 1.2em "Fira Sans", serif;
+}
+
+.checkBox {
+  min-width: 16rem;
+  margin-top: -1px;
+  position: sticky;
+  height: 100%;
+  font-weight: bold;
+  top: 15px;
+}
+
+.checkBox fieldset {
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid rgb(0, 100, 0);
+}
+
+.checkBox label {
+  font-weight: normal;
+  font: caption;
+  color: rgb(0, 128, 0);
+}
+
+.checkBox input[checkbox] {
+  background-color: rgb(0, 100, 0);
+}
+
+.checkBox button {
+  margin-left: 3px;
+  color: rgb(0, 128, 0);
+}
+
+.checkbox-wrapper:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.checkbox-wrapper > input[checkbox] {
+  margin-right: 3px;
+}
+
+legend {
+  color: rgb(0, 100, 0);
+}
+
+.card {
+  background-color: rgb(0, 255, 127);
+  border-radius: 6px;
+  padding: 12px 20px;
+  margin: 8px;
+  width: 20rem;
+  min-width: 17rem;
+  position: relative;
+}
+
+.card .button-wrapper {
+  bottom: 1rem;
+  right: 1rem;
+  position: absolute;
+}
+
+.card p {
+  margin: 2px;
+  color: rgb(0, 0, 0);
+}
+
+.card p:last-child {
+  margin-bottom: 1rem;
+}
+
+.selected {
+  font: caption;
+  display: inline-flex;
+}
+
+.selected p {
+  color: rgb(42, 148, 139);
+}

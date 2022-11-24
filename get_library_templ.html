@@ -1,0 +1,79 @@
+<html>
+<head>
+
+    {% macro render_cards(card) %}
+    {% set n = len(card) %}
+    {% for i in range(n) %}
+    <div class="card">
+        {% for name in card.dtypes.index %}
+        <p>{{ name }}: <b>{{ card.loc[i, name] }}</b></p>
+        {% endfor %}
+        <div class="button-wrapper">
+            <button type="submit">Выбрать</button>
+        </div>
+    </div>
+    {% endfor %}
+    {% endmacro %}
+
+    {% macro render_checkBox(name, option, selected) %}
+    {% set n = len(option) %}
+    <fieldset>
+        <legend>{{ name }}</legend>
+        {% for i in range(n) %}
+        <div class="checkbox-wrapper">
+            {% set id_r = option.loc[i, option.columns[0]] %}
+            {% if id_r in selected %}
+            <input type="checkbox" checked>
+            <label>{{ option.loc[i, option.columns[1]] }}</label>
+            {% else %}
+            <input type="checkbox">
+            <label>{{ option.loc[i, option.columns[1]] }}</label>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </fieldset>
+    {% endmacro %}
+
+    {% macro render_line(relation, sel, name) %}
+    {% if len(sel) != 0 %}
+    <p>&nbsp;{{ name }}:
+        {% set n = len(relation) %}
+        {% for i in range(n) %}
+        {% set id_r = relation.loc[i, relation.columns[0]] %}
+        {% if id_r in sel and id_r == sel[-1] %}
+        {{ relation.loc[i, relation.columns[1]] }}.
+        {% elif id_r in sel and id_r != sel[-1] %}
+        {{ relation.loc[i, relation.columns[1]] }},
+        {% endif %}
+        {% endfor %}
+    </p>
+    {% endif %}
+    {% endmacro %}
+
+  <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+<div class="container">
+        <div class="checkBox">
+        <form>
+            {{ render_checkBox('Жанры', genres, selectedGenres) }}
+            {{ render_checkBox('Авторы', authors, selectedAuthors) }}
+            {{ render_checkBox('Издательства', publishers, selectedPublishers) }}
+            <br>
+            <button type="submit">Найти</button>
+            <button type="submit">Очистить</button>
+        </form>
+    </div>
+    <div class="content">
+        <div class="selected">
+            {{ render_line(genres, selectedGenres, 'Жанры') }}
+            {{ render_line(authors, selectedAuthors, 'Авторы') }}
+            {{ render_line(publishers, selectedPublishers, 'Издательства') }}
+        </div>
+        <div class="cards">
+            {{ render_cards(card) }}
+        </div>
+    </div>
+</div>
+</body>
+</html>
